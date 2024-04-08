@@ -37,4 +37,10 @@
 #else
   SCB->VTOR = FLASH_BANK1_BASE | VECT_TAB_OFFSET; /* Vector Table Relocation to APPLICATION_ADDRESS in preprocessor defines */
 #endif  
-```  
+```
+`HAL构建问题3:` H750数据传输问题 cache一致性问题
+``` 
+sys_cache_enable();  //开启L1-Cache
+...
+SCB_InvalidateDCache(); //数据更新至实际物理内存
+```

@@ -12,6 +12,7 @@
   
 ### Software软件设计问题汇总
 * 使用STM32H750 和 STM32L151C8T6进行设计,使用HAL库进行开发.STM32L151C8T6固有的低功耗检测程序不做改动
+ 
 * STM32H750的ADC采样率设置为2Msps 对应工频周期20ms 采样40000个数据点
 
 `HAL构建问题1:` stm32h7xx_hal_conf.h文件修改

@@ -45,7 +45,7 @@ sys_cache_enable();  //开启L1-Cache
 SCB_InvalidateDCache(); //数据更新至实际物理内存
 ```
 
-### H750软件测试程序
+### H750软件测试程序（自定义）
 ```
 //开启DMA数据传输
 delay_ms(100);

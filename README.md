@@ -46,3 +46,40 @@ SCB_InvalidateDCache(); //数据更新至实际物理内存
 ```
 
 ### H750软件测试程序
+```
+//开启DMA数据传输
+delay_ms(100);
+adc_dma_enable(ADC_DMA_BUF_SIZE);
+  //测试ADC DMA数据传输
+  for (;;){
+  if(g_adc_dma_sta == 1){
+    if(sample_cycle < CYCLE_SAMPLE){
+      pd_data_get(sample_cycle);
+      for (i = 0; i < WIN_SPLIT;++i){
+        printf("%f\n", pd_pulse_buf[sample_cycle][i] * 3.3 / 16384);
+        delay_ms(10);
+      }
+      ++sample_cycle;
+      adc_dma_enable(ADC_DMA_BUF_SIZE);
+    }else{
+      sample_cycle = 0;
+    }
+  }
+}
+```
+```
+//串口1数据传输测试
+for (;;){
+  uart1_send_buffer[0] = 1;
+  usart1_send_data((uint8_t *)uart1_send_buffer,1);
+  delay_ms(100);
+}
+```
+```
+//串口2数据传输测试 + 串口中断接收测试LED DEUBG
+for (;;){
+   uart2_send_buffer[0] = 1;
+  usart2_send_data((uint8_t *)uart2_send_buffer,1);
+  delay_ms(100);
+}
+```
